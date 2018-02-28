@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default () => {
+const Welcome = () => {
     return (
         <div>
             This is the landing page...
@@ -8,3 +8,5 @@ export default () => {
         </div>
     )
 }
+
+export { Welcome }
