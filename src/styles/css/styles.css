@@ -445,6 +445,88 @@ h6, .h6 {
       color: #333;
       background-color: inherit; }
 
+.dropdown {
+  width: 170px;
+  padding: 10px 15px;
+  background: #fff;
+  position: absolute;
+  display: none;
+  z-index: 50;
+  font-size: 1.4rem;
+  line-height: 1.8em;
+  border-radius: 5px;
+  border: 1px solid #e0e0e0;
+  box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.08); }
+  .dropdown.isVisible {
+    display: block; }
+
+.dropdown:before {
+  content: '';
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  transform: rotate(45deg);
+  display: block;
+  background-color: #FFF;
+  border-top: 1px solid #ddd;
+  border-left: 1px solid #ddd; }
+
+.dropdown--user {
+  width: 100px;
+  right: 9px;
+  top: 55px;
+  position: absolute;
+  text-align: right; }
+  .dropdown--user:before {
+    top: -6px;
+    right: 7px; }
+
+/* Dropdown: Animation
+---------------------------------------------*/
+.dropdown--fade-scale {
+  -webkit-animation: scale-fade 150ms forwards cubic-bezier(0.8, 0.02, 0.45, 0.91);
+  animation: scale-fade 150ms forwards cubic-bezier(0.8, 0.02, 0.45, 0.91);
+  -webkit-transform-origin: bottom center;
+  -ms-transform-origin: bottom center;
+  transform-origin: bottom center; }
+
+.dropdown--fade-scale-top {
+  -webkit-animation: scale-fade 150ms forwards cubic-bezier(0.8, 0.02, 0.45, 0.91);
+  animation: scale-fade 150ms forwards cubic-bezier(0.8, 0.02, 0.45, 0.91);
+  -webkit-transform-origin: top center;
+  -ms-transform-origin: top center;
+  transform-origin: top center; }
+
+@-webkit-keyframes scale-fade {
+  0% {
+    opacity: 0;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    -webkit-transform: scale(0.8) rotateX(-40deg);
+    transform: scale(0.8) rotateX(-40deg); }
+  50% {
+    opacity: 1;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)"; }
+  70% {
+    -webkit-transform: scale(1.05) rotateX(0);
+    transform: scale(1.05) rotateX(0); }
+  100% {
+    -webkit-transform: scale(1) rotateX(0);
+    transform: scale(1) rotateX(0); } }
+@keyframes scale-fade {
+  0% {
+    opacity: 0;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    -webkit-transform: scale(0.8) rotateX(-40deg);
+    transform: scale(0.8) rotateX(-40deg); }
+  50% {
+    opacity: 1;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)"; }
+  70% {
+    -webkit-transform: scale(1.05) rotateX(0);
+    transform: scale(1.05) rotateX(0); }
+  100% {
+    -webkit-transform: scale(1) rotateX(0);
+    transform: scale(1) rotateX(0); } }
 /* -----------------------------------------------------------------------------
 
     Helpers
@@ -735,6 +817,9 @@ body {
     @media only screen and (min-width: 768px) {
       .memo .memo-add-note-button {
         padding: 2.3rem 3rem; } }
+    @media only screen and (min-width: 768px) {
+      .memo .memo-add-note-button {
+        height: auto; } }
   .memo .delete-button-wrap {
     position: absolute;
     top: 0;
@@ -948,7 +1033,8 @@ body {
 .userDropdown {
   position: absolute;
   top: 0;
-  right: 0; }
+  right: 0;
+  cursor: pointer; }
 
 .avatar {
   width: 42px;

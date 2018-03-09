@@ -22,7 +22,6 @@ export const PrivateRoute = ({component: ComposedComponent, ...rest}) => {
         }
 
         render() {
-            console.log('here', rest);
             return (
                 <Route {...rest} render={this.handleRender.bind(this)}/>
             )

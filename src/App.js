@@ -19,7 +19,7 @@ class App extends Component {
                                 {/* <img src="/assets/images/logo.png" className="logo" alt="Logo" /> */}
                             </Link>
                             <Header />
-                            <Route path="/" exact={true} component={Welcome}/>
+                            <PrivateRoute path="/" exact={true} component={Feature}/>
                             <Route path="/test" component={Welcome}/>
                             <Route path="/signin" component={SignIn}/>
                             <Route path="/signout" component={SignOut}/>

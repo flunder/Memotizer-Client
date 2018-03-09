@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import { SignInForm } from '.'
 import * as actions from '../../actions'
 import { connect } from 'react-redux'
@@ -40,7 +41,12 @@ class SignIn extends Component {
             :
             <div>
                 {this.displayRedirectMessages()}
-                <SignInForm onSubmit={this.handleSubmit.bind(this)} errorMessage={this.props.errorMessage}/>
+                <SignInForm
+                    onSubmit={this.handleSubmit.bind(this)}
+                    errorMessage={this.props.errorMessage}
+                />
+                <br/>
+                Or <Link to="/signup">Sign Up</Link>
             </div>
     }
 }

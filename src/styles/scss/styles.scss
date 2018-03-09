@@ -11,6 +11,7 @@ Styles
 @import './partials/_typography';
 @import './partials/_grid';
 @import './partials/_buttons';
+@import './partials/_dropdowns';
 @import './partials/_helpers';
 
 @mixin responsivepadding {
@@ -70,6 +71,10 @@ body {
         -webkit-appearance: none;
         height: 42px;
         @include responsivepadding();
+
+        @include MQ(M) {
+            height: auto;
+        }
     }
 
     .delete-button-wrap {
@@ -362,6 +367,7 @@ body {
     position: absolute;
     top: 0;
     right: 0;
+    cursor: pointer;
 }
 
 .avatar {
