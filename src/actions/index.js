@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { UNAUTH_USER, AUTH_USER, AUTH_ERROR, FETCH_MESSAGE } from './types'
-const ROOT_URL = 'http://localhost:3090'
+const ROOT_URL = process.env.REACT_APP_API_URL;
 
 export function signinUser({email, password}) {
 

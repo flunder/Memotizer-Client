@@ -18,8 +18,9 @@ class App extends Component {
                             <Link to={'/feature'}>
                                 {/* <img src="/assets/images/logo.png" className="logo" alt="Logo" /> */}
                             </Link>
-                            {/* <Header /> */}
-                            <Route path="/" exact={true} component={Feature}/>
+                            <Header />
+                            <Route path="/" exact={true} component={Welcome}/>
+                            <Route path="/test" component={Welcome}/>
                             <Route path="/signin" component={SignIn}/>
                             <Route path="/signout" component={SignOut}/>
                             <Route path="/signup" component={SignUp}/>
