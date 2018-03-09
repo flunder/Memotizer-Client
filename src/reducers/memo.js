@@ -11,7 +11,7 @@ import {
 const initialState = {
     memos: {},
     categories: {},
-    categoryFilter: localStorage.getItem('filter'),
+    categoryFilter: false,
     confirmDialogID: false, // Track open 'alerts'
     editingDialogID: false, // Track edit/create forms
 }

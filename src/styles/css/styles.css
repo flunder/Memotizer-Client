@@ -429,6 +429,7 @@ h6, .h6 {
   cursor: pointer;
   border-radius: 3px;
   outline: none;
+  background: white;
   -webkit-appearance: none; }
   .button--primary {
     color: #b025ffde;
@@ -709,11 +710,13 @@ body {
 .memo {
   margin-bottom: 1rem;
   background-color: white;
-  border-radius: 5px;
   word-break: break-word;
   position: relative; }
   .memo header {
-    padding: 2.3rem 3rem; }
+    padding: 1rem 1.5rem; }
+    @media only screen and (min-width: 768px) {
+      .memo header {
+        padding: 2.3rem 3rem; } }
   .memo .memo-url {
     margin-top: 2px;
     font-size: 1.4rem;
@@ -721,13 +724,17 @@ body {
   .memo .memo-add-note-button {
     display: block;
     width: 100%;
-    padding: 2rem 3rem;
     text-align: left;
     cursor: pointer;
     background: #ffffff;
     border: none;
     outline: none;
-    -webkit-appearance: none; }
+    -webkit-appearance: none;
+    height: 42px;
+    padding: 1rem 1.5rem; }
+    @media only screen and (min-width: 768px) {
+      .memo .memo-add-note-button {
+        padding: 2.3rem 3rem; } }
   .memo .delete-button-wrap {
     position: absolute;
     top: 0;
@@ -772,9 +779,12 @@ body {
 
 .note {
   position: relative;
-  padding: 2rem 3rem;
   background-color: #dba0ff3b;
-  border-bottom: 1px solid #ffffff; }
+  border-bottom: 1px solid #ffffff;
+  padding: 1rem 1.5rem; }
+  @media only screen and (min-width: 768px) {
+    .note {
+      padding: 2.3rem 3rem; } }
   .note:last-of-type {
     border: none; }
   .note.isEditing {
@@ -788,8 +798,11 @@ body {
       display: flex;
       width: 100%;
       margin: 0;
-      padding: 2rem 3rem;
-      justify-content: flex-end; }
+      justify-content: flex-end;
+      padding: 1rem 1.5rem; }
+      @media only screen and (min-width: 768px) {
+        .note.isEditing footer {
+          padding: 2.3rem 3rem; } }
       .note.isEditing footer .delete {
         flex: 1;
         position: relative;
@@ -798,12 +811,15 @@ body {
     display: block;
     width: 100%;
     min-height: 100px;
-    padding: 2rem 3rem;
     font-size: 1.35rem;
     font-weight: 100;
     background: #fafafa;
     border-style: none;
-    outline: none; }
+    outline: none;
+    padding: 1rem 1.5rem; }
+    @media only screen and (min-width: 768px) {
+      .note .textarea {
+        padding: 2.3rem 3rem; } }
 
 .create-memo header {
   display: flex;

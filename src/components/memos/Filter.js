@@ -15,7 +15,6 @@ class Filter extends Component {
 
     handleChange = (e) => {
         this.props.applyFilter(e.target.value);
-        localStorage.setItem('filter', e.target.value);
     }
 
     toggleFiltersEditor = (e) => {
@@ -54,7 +53,6 @@ class Filter extends Component {
 }
 
 const mapStateToProps = (state) => {
-    console.log(state);
     return {
         categoryFilter: state.memo.categoryFilter,
         categories: state.memo.categories

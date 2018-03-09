@@ -13,6 +13,14 @@ Styles
 @import './partials/_buttons';
 @import './partials/_helpers';
 
+@mixin responsivepadding {
+    padding: 1rem 1.5rem;
+
+    @include MQ(M) {
+        padding: 2.3rem 3rem;
+    }
+}
+
 body {
     max-width: 780px;
     margin: 0 auto;
@@ -38,12 +46,11 @@ body {
 .memo {
     margin-bottom: 1rem;
     background-color: white;
-    border-radius: 5px;
     word-break: break-word;
     position: relative;
 
     header {
-        padding: 2.3rem 3rem;
+        @include responsivepadding();
     }
 
     .memo-url {
@@ -55,14 +62,14 @@ body {
     .memo-add-note-button {
         display: block;
         width: 100%;
-        padding: 2rem 3rem;
         text-align: left;
         cursor: pointer;
         background: #ffffff;
         border: none;
         outline: none;
-
         -webkit-appearance: none;
+        height: 42px;
+        @include responsivepadding();
     }
 
     .delete-button-wrap {
@@ -119,11 +126,13 @@ body {
     }
 }
 
+
+
 .note {
     position: relative;
-    padding: 2rem 3rem;
     background-color: #dba0ff3b;
     border-bottom: 1px solid #ffffff;
+    @include responsivepadding();
 
     &:last-of-type {
         border: none;
@@ -144,8 +153,8 @@ body {
             display: flex;
             width: 100%;
             margin: 0;
-            padding: 2rem 3rem;
             justify-content: flex-end;
+            @include responsivepadding();
 
             .delete {
                 flex: 1;
@@ -159,12 +168,12 @@ body {
         display: block;
         width: 100%;
         min-height: 100px;
-        padding: 2rem 3rem;
         font-size: 1.35rem;
         font-weight: 100;
         background: #fafafa;
         border-style: none;
         outline: none;
+        @include responsivepadding();
     }
 }
 
