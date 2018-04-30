@@ -16,6 +16,10 @@ const orderByOrderOfNotes = (notes, orderOfNotes) => {
         notesWithIdAsKey[note._id] = note;
     })
 
+    // Fallback for previous Versions of memotizer
+
+    if (!orderOfNotes) return notes;
+
     // And create an array that is ordered by orderOfNotes
 
     return orderOfNotes.reduce((acc, _id) => {
@@ -35,7 +39,6 @@ class Notes extends Component {
         }
 
         this.dragColor = Color(props.category.color).rotate(60);
-        console.log(this.dragColor);
     }
 
     componentWillReceiveProps(newProps){
