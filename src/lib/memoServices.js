@@ -56,6 +56,13 @@ export const apiDeleteNote = (noteID) => {
     }).then(res => res.data)
 }
 
+export const apiUpdateNoteOrder = (memoID, order) => {
+    return axios.post(`${API_URL}/memos/${memoID}/updateNoteOrder`, order, {
+        headers: { authorization: localStorage.getItem('token') },
+    }).then(res => res.data)
+}
+
+
 /* ============================================================================
     CATEGORIES
     - fetch

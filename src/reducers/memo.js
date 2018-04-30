@@ -5,7 +5,8 @@ import {
     apiFetchMemos,
     apiFetchCategories,
     apiCreateCategory,
-    apiDeleteCategory
+    apiDeleteCategory,
+    apiUpdateNoteOrder
 } from '../lib/memoServices'
 
 const initialState = {
@@ -149,6 +150,9 @@ export const addNote = ({memoID, noteValue}) => {
 
                 const updatedMemo = {
                     ...memo,
+                    orderOfNotes: [
+                        ...memo.orderOfNotes, res._id
+                    ],
                     notes: [
                         ...memo.notes, {
                             _id: res._id,
@@ -157,6 +161,8 @@ export const addNote = ({memoID, noteValue}) => {
                         }
                     ]
                 }
+
+                console.log(updatedMemo);
 
                 dispatch(updateMemo(memoID, updatedMemo))
             })
@@ -203,14 +209,26 @@ export const updateNote = ({memoID, noteID, noteValue}) => {
 
 export const deleteNote = ({memoID, noteID}) => {
     return (dispatch, getState) => {
-        console.log(memoID, noteID);
-
         apiDeleteNote(noteID)
             .then(res => {
                 const memo = getState().memo.memos[memoID];
                 const notes = memo.notes.filter(note => note._id !== noteID);
-                const updatedMemo = { ...memo, notes: notes }
+                const updatedMemo = {
+                    ...memo,
+                    notes: notes
+                }
 
+                dispatch(updateMemo(memoID, updatedMemo))
+            })
+    }
+}
+
+export const updateNoteOrder = (memoID, noteOrder) =>  {
+    return (dispatch, getState) => {
+        apiUpdateNoteOrder(memoID, noteOrder)
+            .then(res => {
+                const memo = getState().memo.memos[memoID];
+                const updatedMemo = { ...memo, orderOfNotes: noteOrder }
                 dispatch(updateMemo(memoID, updatedMemo))
             })
     }

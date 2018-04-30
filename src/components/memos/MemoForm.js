@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { createMemo, fetchCategories } from '../../reducers/memo'
-import { FilterSelect } from '.'
+import { createMemo } from '../../reducers/memo'
 
 class MemoForm extends Component {
 
@@ -9,6 +8,14 @@ class MemoForm extends Component {
         title: '',
         url: '',
         category: false
+    }
+
+    componentWillMount(){
+        if (this.props.selectedCategory) {
+            this.setState({
+                category: this.props.selectedCategory
+            })
+        }
     }
 
     componentWillReceiveProps(newProps) {

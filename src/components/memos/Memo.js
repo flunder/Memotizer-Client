@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { NoteForm, Note } from '.'
+import { NoteForm, Notes } from '.'
 import { ConfirmClick } from '../ui'
 import { deleteMemo, fetchCategories } from '../../reducers/memo'
 
@@ -20,14 +20,14 @@ class Memo extends Component {
     }
 
     componentWillMount(){
-        // Load Categories uf now already loaded
+        // Load Categories if not already loaded
         if (Object.keys(this.props.categories).length === 0) {
             this.props.fetchCategories();
         }
     }
 
     render() {
-        const { _id, title, color, categories, url, notes = [] } = this.props;
+        const { _id, title, color, categories, url, notes = [], orderOfNotes } = this.props;
 
         const categoryID = this.props.category;
         const category = (typeof categories[categoryID] !== 'undefined') ? categories[categoryID] : false
@@ -52,15 +52,13 @@ class Memo extends Component {
                 </header>
 
                 <main>
-                    {Object.keys(notes).map(i =>
-                        <Note
-                            key={notes[i]._id}
-                            memoID={_id}
-                            noteID={notes[i]._id}
-                            desc={notes[i].desc}
-                            color={category.color}
-                        />
-                    )}
+
+                    <Notes
+                        category={category}
+                        notes={notes}
+                        memoID={_id}
+                        orderOfNotes={orderOfNotes}
+                    />
 
                     <NoteForm
                         memoID={_id}
