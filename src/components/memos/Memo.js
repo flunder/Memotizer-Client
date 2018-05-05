@@ -27,7 +27,7 @@ class Memo extends Component {
     }
 
     render() {
-        const { _id, title, color, categories, url, notes = [], orderOfNotes } = this.props;
+        const { _id, title, categories, url, notes = [], orderOfNotes } = this.props;
 
         const categoryID = this.props.category;
         const category = (typeof categories[categoryID] !== 'undefined') ? categories[categoryID] : false

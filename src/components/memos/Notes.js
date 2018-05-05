@@ -38,7 +38,7 @@ class Notes extends Component {
             notes: orderByOrderOfNotes(props.notes, props.orderOfNotes),
         }
 
-        this.dragColor = Color(props.category.color).rotate(60);
+        this.dragColor = Color(props.category.color || '#dba0ff3b').rotate(60);
     }
 
     componentWillReceiveProps(newProps){
