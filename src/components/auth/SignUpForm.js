@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { reduxForm, Field } from 'redux-form'
-import RaisedButton from 'material-ui/RaisedButton'
 import { renderTextField } from './form_helpers'
 
 class SignUpForm extends Component {
@@ -19,34 +18,37 @@ class SignUpForm extends Component {
         const {handleSubmit} = this.props
 
         return (
-            <div>
+            <form onSubmit={handleSubmit} className="page page-signup">
+
                 {this.renderAlert()}
-                <form onSubmit={handleSubmit}>
 
-                    <Field
-                        label="Email"
-                        name="email"
-                        component={renderTextField}
-                        type="text"
-                    />
+                <Field
+                    type="text"
+                    name="email"
+                    placeholder="Email address"
+                    component={renderTextField}
+                />
 
-                    <Field
-                        label="Password"
-                        name="password"
-                        component={renderTextField}
-                        type="password"
-                    />
+                <Field
+                    type="password"
+                    name="password"
+                    placeholder="Password"
+                    component={renderTextField}
+                />
 
-                    <Field
-                        label="Password Confirmation"
-                        name="passwordConfirmation"
-                        component={renderTextField}
-                        type="password"
-                    />
+                <Field
+                    type="password"
+                    name="passwordConfirmation"
+                    placeholder="Password again"
+                    component={renderTextField}
+                />
 
-                    <RaisedButton type="submit" label="Sign Up" primary={true} labelColor={'#FFFFFF'}/>
-                </form>
-            </div>
+                <input
+                    type="submit"
+                    value="Sign Up"
+                    className="button-auth"
+                />
+            </form>
         )
     }
 }

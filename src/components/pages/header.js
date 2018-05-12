@@ -3,43 +3,19 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 
 class Header extends Component {
-
-    renderLinks() {
-        if (this.props.authenticated) {
-            return [
-                <li key={1} className="nav-item">
-                    <Link className="nav-link" to="/signout">Sign Out</Link>
-                </li>,
-                <li key={2} className="nav-item">
-                    <Link className="nav-link" to="/feature">Protected Site</Link>
-                </li>
-            ]
-        } else {
-            return [
-                <li key={1} className="nav-item">
-                    <Link className="nav-link" to="/signin">Sign In</Link>
-                </li>,
-                <li key={2} className="nav-item">
-                    <Link className="nav-link" to="/signup">Sign Up</Link>
-                </li>,
-                <li key={3} className="nav-item">
-                    <Link className="nav-link" to="/feature">Protected Site</Link>
-                </li>,
-                <li key={4} className="nav-item">
-                    <Link className="nav-link" to="/test">Test</Link>
-                </li>
-            ]
-        }
-    }
-
     render() {
+        if (this.props.authenticated) return null;
+
         return (
-            <nav className="navbar navbar-light">
-                {/* <Link to="/" className="navbar-brand">Home</Link>
-                <ul className="nav navbar-nav">
-                    {this.renderLinks()}
-                </ul> */}
-            </nav>
+            <section className="auth" data-active="signin">
+                <div className="wrapper">
+                    <nav className="auth-nav">
+                        <Link to="/signin" data-show-page="signin">SIGN IN</Link>
+                        <Link to="/signup" data-show-page="signup">SIGN UP</Link>
+                        <Link to="/reset" data-show-page="reset">RESET</Link>
+                    </nav>
+                </div>
+            </section>
         )
     }
 }

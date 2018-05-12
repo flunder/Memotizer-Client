@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { Redirect } from 'react-router-dom'
 import * as actions from '../../actions'
-import { Link } from 'react-router-dom'
 
 class SignOut extends Component {
 
@@ -10,12 +10,7 @@ class SignOut extends Component {
     }
 
     render() {
-        return (
-            <div>
-                <div>Bye Bye</div>
-                <Link to="/signin">Sign In</Link>
-            </div>
-        )
+        return <Redirect to={{ pathname: 'signin' }}/>
     }
 }
 

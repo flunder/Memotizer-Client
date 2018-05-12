@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 import { SignUpForm } from '.'
 import * as actions from '../../actions'
-import { Redirect } from 'react-router-dom'
 
 class SignUp extends Component {
 
@@ -27,21 +26,16 @@ class SignUp extends Component {
     }
 
     render() {
-        return (this.props.authenticated) ?
-            <Redirect to={{
-                pathname: this.getRedirectPath(), state: {
-                    from: this.props.location
-                }
-            }}/>
-            :
-            <div>
-                <SignUpForm
-                    onSubmit={this.handleSubmit.bind(this)}
-                    errorMessage={this.props.errorMessage}
-                />
-                <br />
-                Or <Link to="/signin">Sign In</Link>
-            </div>
+        if (this.props.authenticated) {
+            return <Redirect to={{ pathname: this.getRedirectPath(), state: { from: this.props.location } }}/>
+        }
+
+        return (
+            <SignUpForm
+                onSubmit={this.handleSubmit.bind(this)}
+                errorMessage={this.props.errorMessage}
+            />
+        )
     }
 }
 

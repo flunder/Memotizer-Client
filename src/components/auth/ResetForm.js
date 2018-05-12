@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { reduxForm, Field } from 'redux-form'
 import { renderTextField } from './form_helpers'
 
-class SignInForm extends Component {
+class ResetForm extends Component {
 
     renderAlert() {
         if (this.props.errorMessage) {
@@ -17,7 +17,7 @@ class SignInForm extends Component {
 
         return (
 
-            <form onSubmit={handleSubmit} className="page page-signin">
+            <form onSubmit={handleSubmit} className="page page-reset">
 
                 {this.renderAlert()}
 
@@ -28,17 +28,10 @@ class SignInForm extends Component {
                     component={renderTextField}
                 />
 
-                <Field
-                    type="password"
-                    name="password"
-                    placeholder="Password"
-                    component={renderTextField}
-                />
-
                 <input
                     className="button-auth"
                     type="submit"
-                    value="Sign In"
+                    value="Resend Email"
                 />
 
             </form>
@@ -47,6 +40,6 @@ class SignInForm extends Component {
     }
 }
 
-SignInForm = reduxForm({ form: 'signin' })(SignInForm)
+ResetForm = reduxForm({ form: 'signin' })(ResetForm)
 
-export { SignInForm }
+export { ResetForm }

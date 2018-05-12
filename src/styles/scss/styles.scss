@@ -13,6 +13,7 @@ Styles
 @import './partials/_buttons';
 @import './partials/_dropdowns';
 @import './partials/_helpers';
+@import './partials/_auth';
 
 @mixin responsivepadding {
     padding: 1rem 1.5rem;
@@ -22,11 +23,6 @@ Styles
     }
 }
 
-body {
-    max-width: 780px;
-    margin: 0 auto;
-    background-color: #F5F4F2;
-}
 
 .error {
     color: red;
