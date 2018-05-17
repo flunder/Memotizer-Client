@@ -34,6 +34,7 @@ class SignUp extends Component {
             <SignUpForm
                 onSubmit={this.handleSubmit.bind(this)}
                 errorMessage={this.props.errorMessage}
+                location={this.props.location}
             />
         )
     }

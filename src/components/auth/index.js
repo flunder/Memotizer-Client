@@ -1,4 +1,5 @@
 export { Auth } from './Auth'
+export { AuthFooter } from './AuthFooter'
 export { Reset } from './Reset'
 export { ResetForm } from './ResetForm'
 export { SignIn } from './SignIn'

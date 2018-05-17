@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { reduxForm, Field } from 'redux-form'
 import { renderTextField } from './form_helpers'
+import { AuthFooter } from '.'
 
 class ResetForm extends Component {
 
@@ -32,6 +33,10 @@ class ResetForm extends Component {
                     className="button-auth"
                     type="submit"
                     value="Resend Email"
+                />
+
+                <AuthFooter
+                    location={this.props.location}
                 />
 
             </form>

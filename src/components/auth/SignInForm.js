@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { reduxForm, Field } from 'redux-form'
 import { renderTextField } from './form_helpers'
+import { AuthFooter } from '.'
 
 class SignInForm extends Component {
 
@@ -39,6 +40,10 @@ class SignInForm extends Component {
                     className="button-auth"
                     type="submit"
                     value="Sign In"
+                />
+
+                <AuthFooter
+                    location={this.props.location}
                 />
 
             </form>

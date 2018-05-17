@@ -16,10 +16,12 @@ class Reset extends Component {
     }
 
     render() {
+        console.log('Reset', this.props.location.pathname);
         return (
             <ResetForm
                 onSubmit={this.handleSubmit.bind(this)}
                 errorMessage={this.props.errorMessage}
+                location={this.props.location}
             />
         )
     }
