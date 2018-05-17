@@ -806,7 +806,8 @@ h6, .h6 {
       color: #C3C3C2;
       font-weight: bold;
       font-size: 1.6rem;
-      transition: color .2s; }
+      transition: color .2s;
+      -webkit-tap-highlight-color: transparent; }
       .auth .auth-nav a:hover {
         color: #909090; }
     .auth .auth-nav *[data-show-page="signup"] {
