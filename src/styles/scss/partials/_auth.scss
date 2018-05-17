@@ -4,13 +4,23 @@
     justify-content: center;
     align-items: center;
     position: absolute;
-    left: 0;
     top: 0;
+    left: 0;
     width: 100%;
     height: 70%;
 
+    @include MQ(S) {
+        &[data-active="signin"] .authPages:before { transform: translateX(0)}
+        &[data-active="signup"] .authPages:before { transform: translateX(100px)}
+        &[data-active="reset"] .authPages:before { transform: translateX(340px)}
+    }
+
     .wrapper {
-        width: 400px;
+        width: 360px;
+
+        @include MQ(S) {
+            width: 400px;
+        }
     }
 
     // NAVIGATION
@@ -20,10 +30,11 @@
         margin-bottom: 10px;
 
         a {
+            padding: 20px 0;
             color: #C3C3C2;
             font-weight: bold;
-            padding: 20px 0;
             font-size: 1.6rem;
+            transition: color .2s;
 
             &:hover {
                 color: #909090;
@@ -45,27 +56,28 @@
         position: relative;
         visibility: hidden;
 
-        // Nozzle
+        // Nozzle Animation
 
         &:before {
             content: "";
-            z-index: 180;
             position: absolute;
             top: -18px;
             left: 19px;
             width: 20px;
             height: 20px;
             visibility: visible;
-            border-left-width: 10px;
-            border-right-width: 10px;
-            border-bottom-width: 10px;
-            border-top-width: 10px;
-            border-bottom-color: white;
+            z-index: 180;
             border-style: solid;
-            border-left-color: transparent;
+            border-top-width: 10px;
             border-top-color: transparent;
+            border-right-width: 10px;
             border-right-color: transparent;
-            transition: all 1s;
+            border-bottom-width: 10px;
+            border-bottom-color: white;
+            border-left-width: 10px;
+            border-left-color: transparent;
+            transition: all 0.4s;
+            transition-timing-function: cubic-bezier(0.43, -0.37, 0.61, 0.96);
         }
 
         .page {
@@ -75,15 +87,15 @@
             width: 100%;
 
             .button-auth {
-                padding: 22px;
+                margin: 0;
+                padding: 20px;
                 background-color: #E592FF;
+                border: none;
+                border-bottom: 3px solid #bb77d0;
                 border-radius: 5px;
                 color: white;
                 text-align: center;
                 font-weight: bold;
-                border: none;
-                margin: 0;
-                border-bottom: 3px solid #bb77d0;
 
                 &:hover {
                     background: darken(#E592FF, 2)
@@ -92,14 +104,22 @@
 
             input {
                 flex: 1;
+                width: 100%;
+                margin-top: 0px;
                 margin-bottom: 5px;
                 padding: 20px;
                 background-color: white;
-                border: none;
                 border: 2px solid white;
                 border-radius: 5px;
                 font-weight: bold;
                 font-size: 1.6rem;
+
+                -webkit-appearance: none;
+
+                &:nth-of-type(1) { z-index: 3 }
+                &:nth-of-type(2) { z-index: 2 }
+                &:nth-of-type(3) { z-index: 1 }
+                &:nth-of-type(4) { z-index: 0 }
 
                 &::placeholder {
                     color: #E0E0E0;
@@ -118,6 +138,55 @@
 
         }
 
+        // Switch Animation
+
+        .auth-enter {
+            form {
+                input {
+                    transition: transform .5s .4s, opacity 1s;
+                    transition-timing-function: cubic-bezier(0.57, 0.09, 0.12, 1.25);
+                }
+                input:nth-of-type(1) {opacity: 1 ; transform: translateY(0px); }
+                input:nth-of-type(2) { transform: translateY(-67px);  }
+                input:nth-of-type(3) { transform: translateY(-134px);  }
+                input:nth-of-type(4) { transform: translateY(-201px);  }
+            }
+
+        }
+
+        .auth-enter.auth-enter-active {
+            form {
+                input:nth-of-type(1) {opacity: 1 ; transform: translateY(0px); }
+                input:nth-of-type(2) { transform: translateY(0px); }
+                input:nth-of-type(3) { transform: translateY(0px); }
+                input:nth-of-type(4) { transform: translateY(0px); }
+            }
+        }
+
+        .auth-exit {
+            form {
+                input {
+                    transition: all .3s .3s, opacity 1s;
+                    transition-timing-function: cubic-bezier(0.57, 0.09, 0.12, 1.28);
+                }
+                input:nth-of-type(1) {opacity: 1 ; transform: translateY(0px); }
+                input:nth-of-type(2) { transform: translateY(0px); }
+                input:nth-of-type(3) { transform: translateY(0px); }
+                input:nth-of-type(4) { transform: translateY(0px); }
+            }
+        }
+
+        .auth-exit.auth-exit-active {
+            form {
+
+                input:nth-of-type(1) {opacity: 1 ; transform: translateY(0px); }
+                input:nth-of-type(2) { transform: translateY(-67px);  }
+                input:nth-of-type(3) { transform: translateY(-134px);  }
+                input:nth-of-type(4) { transform: translateY(-201px);  }
+            }
+        }
+
+
     }
 
     // Show Active Page
@@ -129,8 +198,9 @@
     // Move Nozzle
 
     &[data-active="signin"] .authPages:before { transform: translateX(0)}
-    &[data-active="signup"] .authPages:before { transform: translateX(100px)}
-    &[data-active="reset"] .authPages:before { transform: translateX(340px)}
+    &[data-active="signup"] .authPages:before { transform: translateX(90px)}
+    &[data-active="reset"] .authPages:before { transform: translateX(300px)}
+
 
 
 }
