@@ -26,9 +26,7 @@ class Auth extends Component {
                             <CSSTransition
                                 key={authPage}
                                 timeout={850}
-                                classNames='auth'
-                                // unmountOnExit
-                                >
+                                classNames='auth'>
                                 <div>
                                     {authPage === 'signin' && <SignIn location={this.props.location} />}
                                     {authPage === 'signup' && <SignUp location={this.props.location} />}

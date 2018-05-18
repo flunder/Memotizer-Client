@@ -16,6 +16,12 @@ $footerColor: #969696;
     height: 100%;
     background: $backgroundColor;
 
+    @include MQ(S) {
+        &[data-active="signin"] .authPages:before { transform: translateX(0)}
+        &[data-active="signup"] .authPages:before { transform: translateX(100px)}
+        &[data-active="reset"] .authPages:before { transform: translateX(340px)}
+    }
+
     .wrapper {
         width: 340px;
         margin-top: -210px;
@@ -37,6 +43,7 @@ $footerColor: #969696;
             font-weight: bold;
             font-size: 1.6rem;
             transition: color .2s;
+
             -webkit-tap-highlight-color: transparent;
 
             &:hover {
@@ -144,12 +151,12 @@ $footerColor: #969696;
 
             .auth-footer {
                 display: flex;
-                align-items: center;
                 justify-content: center;
-                color: $footerColor;
-                height: 60px;
-                top: -6px;
+                align-items: center;
                 position: relative;
+                top: -6px;
+                height: 60px;
+                color: $footerColor;
             }
 
         }
@@ -157,6 +164,11 @@ $footerColor: #969696;
         // Switch Animation
 
         .auth-enter {
+            .alert {
+                opacity: 1;
+                transition: all .2s;
+
+            }
             form {
                 > * {
                     transition: transform .44s .35s;
@@ -172,6 +184,9 @@ $footerColor: #969696;
         }
 
         .auth-enter.auth-enter-active {
+            .alert {
+                opacity: 0;
+            }
             form {
                 *:nth-child(1) { transform: translateY(0px); }
                 *:nth-child(2) { transform: translateY(0px); }
@@ -182,6 +197,10 @@ $footerColor: #969696;
         }
 
         .auth-exit {
+            .alert {
+                opacity: 1;
+                transition: all .2s;
+            }
             form {
                 > * {
                     transition: all .2s .3s;
@@ -196,6 +215,9 @@ $footerColor: #969696;
         }
 
         .auth-exit.auth-exit-active {
+            .alert {
+                opacity: 0
+            }
             form {
                 *:nth-child(1) { transform: translateY(0px); }
                 *:nth-child(2) { transform: translateY(-65px); }
@@ -220,12 +242,30 @@ $footerColor: #969696;
     &[data-active="signup"] .authPages:before { transform: translateX(90px)}
     &[data-active="reset"] .authPages:before { transform: translateX(287px)}
 
-    @include MQ(S) {
-        &[data-active="signin"] .authPages:before { transform: translateX(0)}
-        &[data-active="signup"] .authPages:before { transform: translateX(100px)}
-        &[data-active="reset"] .authPages:before { transform: translateX(340px)}
+    .alert {
+        position: absolute;
+        top: -75px;
+        left: 210px;
+        width: 100px;
+        padding: 9px 4px;
+        background: #ff2d2d;
+        border-radius: 5px;
+        color: white;
+        text-align: center;
+        font-weight: 600;
+        font-size: 1.4rem;
+        line-height: 1.1;
+
+        &:after {
+            content: "";
+            width: 10px;
+            height: 10px;
+            position: absolute;
+            bottom: -5px;
+            transform: rotate(-45deg);
+            background: inherit;
+            left: 41px;
+        }
     }
-
-
 
 }

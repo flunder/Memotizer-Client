@@ -787,6 +787,13 @@ h6, .h6 {
   width: 100%;
   height: 100%;
   background: #9de9ff; }
+  @media only screen and (min-width: 480px) {
+    .auth[data-active="signin"] .authPages:before {
+      transform: translateX(0); }
+    .auth[data-active="signup"] .authPages:before {
+      transform: translateX(100px); }
+    .auth[data-active="reset"] .authPages:before {
+      transform: translateX(340px); } }
   .auth .wrapper {
     width: 340px;
     margin-top: -210px; }
@@ -889,12 +896,15 @@ h6, .h6 {
           border: 2px solid #e0e0e0; }
       .auth .authPages .page .auth-footer {
         display: flex;
-        align-items: center;
         justify-content: center;
-        color: #969696;
-        height: 60px;
+        align-items: center;
+        position: relative;
         top: -6px;
-        position: relative; }
+        height: 60px;
+        color: #969696; }
+    .auth .authPages .auth-enter .alert {
+      opacity: 1;
+      transition: all .2s; }
     .auth .authPages .auth-enter form > * {
       transition: transform .44s .35s;
       transition-timing-function: cubic-bezier(0.57, 0.09, 0.12, 1.25); }
@@ -908,6 +918,8 @@ h6, .h6 {
       transform: translateY(-195px); }
     .auth .authPages .auth-enter form *:nth-child(5) {
       transform: translateY(-260px); }
+    .auth .authPages .auth-enter.auth-enter-active .alert {
+      opacity: 0; }
     .auth .authPages .auth-enter.auth-enter-active form *:nth-child(1) {
       transform: translateY(0px); }
     .auth .authPages .auth-enter.auth-enter-active form *:nth-child(2) {
@@ -918,6 +930,9 @@ h6, .h6 {
       transform: translateY(0px); }
     .auth .authPages .auth-enter.auth-enter-active form *:nth-child(5) {
       transform: translateY(0px); }
+    .auth .authPages .auth-exit .alert {
+      opacity: 1;
+      transition: all .2s; }
     .auth .authPages .auth-exit form > * {
       transition: all .2s .3s;
       transition-timing-function: cubic-bezier(0.57, 0.09, 0.12, 1.28); }
@@ -931,6 +946,8 @@ h6, .h6 {
       transform: translateY(0px); }
     .auth .authPages .auth-exit form *:nth-child(5) {
       transform: translateY(0px); }
+    .auth .authPages .auth-exit.auth-exit-active .alert {
+      opacity: 0; }
     .auth .authPages .auth-exit.auth-exit-active form *:nth-child(1) {
       transform: translateY(0px); }
     .auth .authPages .auth-exit.auth-exit-active form *:nth-child(2) {
@@ -953,13 +970,28 @@ h6, .h6 {
     transform: translateX(90px); }
   .auth[data-active="reset"] .authPages:before {
     transform: translateX(287px); }
-  @media only screen and (min-width: 480px) {
-    .auth[data-active="signin"] .authPages:before {
-      transform: translateX(0); }
-    .auth[data-active="signup"] .authPages:before {
-      transform: translateX(100px); }
-    .auth[data-active="reset"] .authPages:before {
-      transform: translateX(340px); } }
+  .auth .alert {
+    position: absolute;
+    top: -75px;
+    left: 210px;
+    width: 100px;
+    padding: 9px 4px;
+    background: #ff2d2d;
+    border-radius: 5px;
+    color: white;
+    text-align: center;
+    font-weight: 600;
+    font-size: 1.4rem;
+    line-height: 1.1; }
+    .auth .alert:after {
+      content: "";
+      width: 10px;
+      height: 10px;
+      position: absolute;
+      bottom: -5px;
+      transform: rotate(-45deg);
+      background: inherit;
+      left: 41px; }
 
 .error {
   color: red; }
