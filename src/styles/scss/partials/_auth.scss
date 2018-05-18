@@ -16,12 +16,6 @@ $footerColor: #969696;
     height: 100%;
     background: $backgroundColor;
 
-    @include MQ(S) {
-        &[data-active="signin"] .authPages:before { transform: translateX(0)}
-        &[data-active="signup"] .authPages:before { transform: translateX(100px)}
-        &[data-active="reset"] .authPages:before { transform: translateX(340px)}
-    }
-
     .wrapper {
         width: 340px;
         margin-top: -210px;
@@ -241,6 +235,12 @@ $footerColor: #969696;
     &[data-active="signin"] .authPages:before { transform: translateX(0)}
     &[data-active="signup"] .authPages:before { transform: translateX(90px)}
     &[data-active="reset"] .authPages:before { transform: translateX(287px)}
+
+    @include MQ(S) {
+        &[data-active="signin"] .authPages:before { transform: translateX(0)}
+        &[data-active="signup"] .authPages:before { transform: translateX(100px)}
+        &[data-active="reset"] .authPages:before { transform: translateX(340px)}
+    }
 
     .alert {
         position: absolute;
