@@ -12,10 +12,10 @@ class App extends Component {
         return (
             <div className="App">
                 <Switch>
-                    <Route path="/signin" component={Auth} />
-                    <Route path="/signup" component={Auth} />
-                    <Route path="/reset" component={Auth} />
-                    <Route path="/signout" component={SignOut} />
+                    <Route exact={true} path="/signin" component={Auth} />
+                    <Route exact={true} path="/signup" component={Auth} />
+                    <Route exact={true} path="/reset" component={Auth} />
+                    <Route exact={true} path="/signout" component={SignOut} />
 
                     <PrivateRoute path="/" exact={true} component={Feature}/>
                     <PrivateRoute path="/feature" component={Feature}/>

@@ -13,8 +13,19 @@ class SignInForm extends Component {
         }
     }
 
+    shouldComponentUpdate(newProps) {
+        // Allow Error Message
+        if (this.props.errorMessage !== newProps.errorMessage) return true;
+
+        // Component re-renders ( on initial load ) each time for each
+        // <Field /> component, to prevent that: false here
+        return false;
+    }
+
     render() {
         const { handleSubmit } = this.props
+
+        console.log('rendering SignInForm', this.props);
 
         return (
 

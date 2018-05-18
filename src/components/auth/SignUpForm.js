@@ -15,8 +15,19 @@ class SignUpForm extends Component {
         }
     }
 
+    shouldComponentUpdate(newProps) {
+        // Allow Error Message Changes
+        if (this.props.errorMessage !== newProps.errorMessage) return true;
+
+        // Component re-renders ( on initial load ) each time for each
+        // <Field /> component, to prevent that: false here
+        return false;
+    }
+
     render() {
         const {handleSubmit} = this.props
+
+        console.log('rendering SignUpForm');
 
         return (
             <form onSubmit={handleSubmit} className="page page-signup">
