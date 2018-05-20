@@ -35,8 +35,6 @@ class SignIn extends Component {
             return <Redirect to={{ pathname: this.getRedirectPath(), state: { from: this.props.location } }}/>
         }
 
-        console.log('rendering SignIn');
-
         return (
             <SignInForm
                 onSubmit={this.handleSubmit.bind(this)}

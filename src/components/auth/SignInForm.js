@@ -7,34 +7,27 @@ class SignInForm extends Component {
 
     renderAlert() {
         if (this.props.errorMessage) {
-            return <div className="alert alert-danger">
-                <strong>Oops: </strong>{this.props.errorMessage}
-            </div>
+            return (
+                <div className="alert alert-danger">
+                    <strong>Oops: </strong>{this.props.errorMessage}
+                </div>
+            )
         }
     }
 
     shouldComponentUpdate(newProps) {
-        // Allow Error Message
-        if (this.props.errorMessage !== newProps.errorMessage) return true;
-
-        // Component re-renders ( on initial load ) each time for each
-        // <Field /> component, to prevent that: false here
-        return false;
+        if (this.props.errorMessage !== newProps.errorMessage) return true;     // Allow Error Message Changes
+        return false;                                                           // Stop reender for each <Field />
     }
 
-    render() {
-        const { handleSubmit } = this.props
-
-        console.log('rendering SignInForm', this.props);
-
+    render({ handleSubmit } = this.props) {
         return (
-
             <form onSubmit={handleSubmit} className="page page-signin">
 
                 {this.renderAlert()}
 
                 <Field
-                    type="text"
+                    type="email"
                     name="email"
                     placeholder="Email address"
                     component={renderTextField}
@@ -58,7 +51,6 @@ class SignInForm extends Component {
                 />
 
             </form>
-
         )
     }
 }

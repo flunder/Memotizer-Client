@@ -14,17 +14,11 @@ class ResetForm extends Component {
     }
 
     shouldComponentUpdate(newProps) {
-        // Allow Error Message Changes
-        if (this.props.errorMessage !== newProps.errorMessage) return true;
-
-        // Component re-renders ( on initial load ) each time for each
-        // <Field /> component, to prevent that: false here
-        return false;
+        if (this.props.errorMessage !== newProps.errorMessage) return true;     // Allow Error Message Changes
+        return false;                                                           // Stop reender for each <Field />
     }
 
-    render() {
-        const { handleSubmit } = this.props
-
+    render({ handleSubmit } = this.props) {
         return (
 
             <form onSubmit={handleSubmit} className="page page-reset">
@@ -32,7 +26,7 @@ class ResetForm extends Component {
                 {this.renderAlert()}
 
                 <Field
-                    type="text"
+                    type="email"
                     name="email"
                     placeholder="Email address"
                     component={renderTextField}

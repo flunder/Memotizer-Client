@@ -6,10 +6,16 @@ class AuthFooter extends Component {
         super(props);
 
         this.footers = [
-            <div>Proudly made by <a href="http://www.larsattacks.co.uk">LA</a></div>,
-            <div>Thanks for visiting Memotizer!</div>,
-            <div>Take care of your time!</div>,
+            <div key="1">Proudly made by <a href="http://www.larsattacks.co.uk">LA</a></div>,
+            <div key="2">Thanks for visiting Memotizer!</div>,
+            <div key="3">Take care of your time!</div>,
         ]
+    }
+
+    shouldComponentUpdate(){
+         // don't update this component whenever
+         // the parent component re-renders
+        return false;
     }
 
     randomNumberBetween = (min, max) => {
@@ -17,11 +23,9 @@ class AuthFooter extends Component {
     }
 
     render() {
-        let x = this.randomNumberBetween(0, this.footers.length);
-
         return (
             <div className="auth-footer" key={this.props.location.pathname}>
-                {this.footers[x]}
+                {this.footers[this.randomNumberBetween(0, this.footers.length)]}
             </div>
         )
     }

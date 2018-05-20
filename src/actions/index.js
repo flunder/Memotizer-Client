@@ -6,13 +6,17 @@ export function signinUser({email, password}) {
 
     return function (dispatch) {
 
-        // submit email and password to server
+        // Submit email and password to server
         const request = axios.post(`${ROOT_URL}/signin`, {email, password})
+
+        console.log('sending', email, password);
+
         request
             .then(response => {
+                console.log(response);
                 // -Save the JWT token
                 localStorage.setItem('token', response.data.token)
-
+                console.log('yo');
                 // -if request is good, we need to update state to indicate user is authenticated
                 dispatch({type: AUTH_USER})
             })
@@ -46,9 +50,31 @@ export function signupUser({email, password, passwordConfirmation}) {
     }
 }
 
+export function resetPassword({email, password}) {
+    return function (dispatch) {
+        axios.post(`${ROOT_URL}/resetPassword`, {email, password})
+            .then(response => {
+                dispatch({type: AUTH_USER})
+                localStorage.setItem('token', response.data.token)
+            })
+            .catch(({response}) => {
+                dispatch(authError(response.data.error))
+            })
+    }
+}
+
 export function authError(error) {
     return {
         type: AUTH_ERROR,
         payload: error
+    }
+}
+
+export function apiRequestResetPassword(email) {
+    return function(dispatch) {
+        axios.post(`${ROOT_URL}/requestResetPassword`, {email})
+            .then(res => {
+                console.log(res);
+            })
     }
 }

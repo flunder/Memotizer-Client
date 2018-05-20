@@ -47,13 +47,23 @@ $footerColor: #969696;
             &.signIn { }
             &.signUp { margin-left: 30px; }
             &.reset { flex: 1; text-align: right; }
-
         }
+
+        .customText {
+            padding: 20px 0;
+            color: $navInactiveLink;
+            font-weight: bold;
+            font-size: 1.6rem;
+            text-align: right;
+            flex: 1;
+        }
+
     }
 
     &[data-active="signin"] a.signIn { color: #606060; }
     &[data-active="signup"] a.signUp { color: #606060; }
     &[data-active="reset"] a.reset { color: #606060; }
+    &[data-active="resetPassword"] a.resetPassword { color: #606060; }
 
     // PAGES
 
@@ -108,6 +118,11 @@ $footerColor: #969696;
                 }
             }
 
+            .authField {
+                position: relative;
+                margin-bottom: 5px;
+            }
+
             *:nth-child(1) { z-index: 4 }
             *:nth-child(2) { z-index: 3 }
             *:nth-child(3) { z-index: 2 }
@@ -118,7 +133,6 @@ $footerColor: #969696;
                 flex: 1;
                 width: 100%;
                 margin-top: 0px;
-                margin-bottom: 5px;
                 padding: 20px;
                 background-color: white;
                 border: 2px solid white;
@@ -229,6 +243,7 @@ $footerColor: #969696;
     &[data-active="signin"] .page-signin { visibility: visible; }
     &[data-active="signup"] .page-signup { visibility: visible; }
     &[data-active="reset"]  .page-reset { visibility: visible; }
+    &[data-active="resetPassword"]  .page-resetPassword { visibility: visible; }
 
     // Move Nozzle
 
@@ -244,8 +259,8 @@ $footerColor: #969696;
 
     .alert {
         position: absolute;
-        top: -75px;
-        left: 210px;
+        top: -25px;
+        left: 175px;
         width: 100px;
         padding: 9px 4px;
         background: #ff2d2d;
@@ -255,6 +270,12 @@ $footerColor: #969696;
         font-weight: 600;
         font-size: 1.4rem;
         line-height: 1.1;
+        transform: translateY(-100%);
+
+        @include MQ(S) {
+            width: 140px;
+            left: 185px;
+        }
 
         &:after {
             content: "";
@@ -264,8 +285,26 @@ $footerColor: #969696;
             bottom: -5px;
             transform: rotate(-45deg);
             background: inherit;
-            left: 41px;
+            left: 47%;
         }
+    }
+
+    .error {
+        position: absolute;
+        right: 10px;
+        line-height: 1.2;
+        height: auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        background: #ff2d2d;
+        border-radius: 5px;
+        padding: 10px;
+        font-size: 1rem;
+        color: #ffffff;
+        border: 1px solid #ff2d2d;
+        top: 13px;
     }
 
 }

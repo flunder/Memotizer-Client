@@ -6,7 +6,6 @@
         "axios": "^0.17.1",
         "color": "^3.0.0",
         "lodash": "^4.17.5",
-        "material-ui": "^0.20.0",
         "react": "^16.3.2",
         "react-anime": "^2.1.0",
         "react-beautiful-dnd": "^7.1.0",
@@ -17,15 +16,15 @@
         "react-sortable-hoc": "^0.6.8",
         "react-transition-group": "^2.3.1",
         "redux": "^3.7.2",
-        "redux-devtools-extension": "^2.13.2",
-        "redux-form": "^7.2.3",
+        "redux-form": "^7.3.0",
         "redux-persist": "^5.9.1",
         "redux-thunk": "^2.2.0"
     },
     "devDependencies": {
         "eslint": "^4.15.0",
         "eslint-plugin-react": "^7.5.1",
-        "react-app-env": "^1.2.0"
+        "react-app-env": "^1.2.0",
+        "redux-devtools-extension": "^2.13.2"
     },
     "scripts": {
         "start": "react-scripts start",
