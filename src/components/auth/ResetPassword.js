@@ -9,8 +9,9 @@ class ResetPassword extends Component {
     constructor(props) {
         super(props);
 
-        // Get from somewhere ( url ) ?
-        this.userEmail = "larsf2005@gmail.com";
+        // Get Details from params
+        this.email = props.match.params.email;
+        this.token = props.match.params.token;
 
         this.state = {
             pw: ''
@@ -19,17 +20,20 @@ class ResetPassword extends Component {
 
     renderAlert() {
         if (this.props.errorMessage) {
-            return <div className="alert alert-danger">
-                <strong>Oops: </strong>{this.props.errorMessage}
-            </div>
+            return (
+                <div className="alert alert-danger">
+                    <strong>Oops: </strong>{this.props.errorMessage}
+                </div>
+            )
         }
     }
 
     handleSubmit = (e) => {
         e.preventDefault();
         this.props.resetPassword({
-            email: this.userEmail,
-            password: this.state.pw
+            email: this.email,
+            password: this.state.pw,
+            resetToken: this.token
         })
     }
 
@@ -41,7 +45,7 @@ class ResetPassword extends Component {
                     <nav className="auth-nav noSelect">
                         <Link to="/resetPassword" className="resetPassword">Reset Password</Link>
                         <div className="customText">
-                            for {this.userEmail} ( hideme )
+                            for {this.email}
                         </div>
                     </nav>
 
@@ -51,16 +55,18 @@ class ResetPassword extends Component {
 
                             {this.renderAlert()}
 
-                            <input
-                                type="text"
-                                placeholder="Enter new Password"
-                                value={this.state.pw}
-                                onChange={(e) => {
-                                    this.setState({
-                                        pw: e.currentTarget.value
-                                    })
-                                }}
-                            />
+                            <div className="authField">
+                                <input
+                                    type="text"
+                                    placeholder="Enter new Password"
+                                    value={this.state.pw}
+                                    onChange={(e) => {
+                                        this.setState({
+                                            pw: e.currentTarget.value
+                                        })
+                                    }}
+                                />
+                            </div>
 
                             <input
                                 className="button-auth"

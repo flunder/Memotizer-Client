@@ -16,7 +16,7 @@ class App extends Component {
                     <Route exact={true} path="/signup" component={Auth} />
                     <Route exact={true} path="/reset" component={Auth} />
                     <Route exact={true} path="/signout" component={SignOut} />
-                    <Route path="/resetPassword" component={ResetPassword} />
+                    <Route path="/resetPassword/:email/:token" component={ResetPassword} />
 
                     <PrivateRoute path="/" exact={true} component={Feature}/>
                     <PrivateRoute path="/feature" component={Feature}/>
