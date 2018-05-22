@@ -1,6 +1,8 @@
 export { Auth } from './Auth'
+export { AuthFooter } from './AuthFooter'
 export { Reset } from './Reset'
 export { ResetForm } from './ResetForm'
+export { ResetPassword } from './ResetPassword'
 export { SignIn } from './SignIn'
 export { SignInForm } from './SignInForm'
 export { SignOut } from './SignOut'

@@ -6,24 +6,7 @@ import { TransitionGroup, CSSTransition } from 'react-transition-group'
 
 class Auth extends Component {
 
-    constructor(props){
-        super(props);
-
-        this.state = {
-            mounted: false
-        }
-
-    }
-
-    componentDidMount() {
-        this.setState({
-            mounted: true
-        })
-    }
-
     render() {
-
-        console.log(this.state);
         // if (this.props.authenticated) return null;
 
         const authPage = this.props.location.pathname.replace('/','');
@@ -32,29 +15,18 @@ class Auth extends Component {
             <section className="auth" data-active={authPage}>
 
                 <div className="wrapper">
-                    <nav className="auth-nav">
-                        <Link to="/signin" data-show-page="signin">SIGN IN</Link>
-                        <Link to="/signup" data-show-page="signup">SIGN UP</Link>
-                        <Link to="/reset" data-show-page="reset">RESET</Link>
+                    <nav className="auth-nav noSelect">
+                        <Link to="/signin" className="signIn">SIGN IN</Link>
+                        <Link to="/signup" className="signUp">SIGN UP</Link>
+                        <Link to="/reset" className="reset">RESET</Link>
                     </nav>
 
                     <div className="authPages">
-
-                        {/* This css transition really isn't happy atall */}
-
                         <TransitionGroup>
                             <CSSTransition
-                                in={this.state.mounted}
                                 key={authPage}
-                                timeout={1000}
-                                classNames='auth'
-                                unmountOnExit
-                                onExited={() => {
-                                      this.setState({
-                                          mounted: false,
-                                      });
-                                }}
-                                >
+                                timeout={850}
+                                classNames='auth'>
                                 <div>
                                     {authPage === 'signin' && <SignIn location={this.props.location} />}
                                     {authPage === 'signup' && <SignUp location={this.props.location} />}
@@ -62,7 +34,6 @@ class Auth extends Component {
                                 </div>
                             </CSSTransition>
                         </TransitionGroup>
-
                     </div>
                 </div>
 

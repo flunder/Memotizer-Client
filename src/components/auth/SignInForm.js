@@ -1,28 +1,33 @@
 import React, { Component } from 'react'
 import { reduxForm, Field } from 'redux-form'
 import { renderTextField } from './form_helpers'
+import { AuthFooter } from '.'
 
 class SignInForm extends Component {
 
     renderAlert() {
         if (this.props.errorMessage) {
-            return <div className="alert alert-danger">
-                <strong>Oops: </strong>{this.props.errorMessage}
-            </div>
+            return (
+                <div className="alert alert-danger">
+                    <strong>Oops: </strong>{this.props.errorMessage}
+                </div>
+            )
         }
     }
 
-    render() {
-        const { handleSubmit } = this.props
+    shouldComponentUpdate(newProps) {
+        if (this.props.errorMessage !== newProps.errorMessage) return true;     // Allow Error Message Changes
+        return false;                                                           // Stop reender for each <Field />
+    }
 
+    render({ handleSubmit } = this.props) {
         return (
-
             <form onSubmit={handleSubmit} className="page page-signin">
 
                 {this.renderAlert()}
 
                 <Field
-                    type="text"
+                    type="email"
                     name="email"
                     placeholder="Email address"
                     component={renderTextField}
@@ -41,8 +46,11 @@ class SignInForm extends Component {
                     value="Sign In"
                 />
 
-            </form>
+                <AuthFooter
+                    location={this.props.location}
+                />
 
+            </form>
         )
     }
 }

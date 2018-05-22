@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
+import { Redirect } from 'react-router-dom'
 import { SignInForm } from '.'
 import * as actions from '../../actions'
 
@@ -39,6 +39,7 @@ class SignIn extends Component {
             <SignInForm
                 onSubmit={this.handleSubmit.bind(this)}
                 errorMessage={this.props.errorMessage}
+                location={this.props.location}
             />
         )
     }

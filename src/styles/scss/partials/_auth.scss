@@ -1,3 +1,9 @@
+// Color Defs
+
+$backgroundColor: #9de9ff;
+$navInactiveLink: #ffffff;
+$buttonColor: #ff6060;
+$footerColor: #969696;
 
 .auth {
     display: flex;
@@ -8,6 +14,7 @@
     left: 0;
     width: 100%;
     height: 100%;
+    background: $backgroundColor;
 
     .wrapper {
         width: 340px;
@@ -26,25 +33,37 @@
 
         a {
             padding: 20px 0;
-            color: #C3C3C2;
+            color: $navInactiveLink;
             font-weight: bold;
             font-size: 1.6rem;
             transition: color .2s;
+
             -webkit-tap-highlight-color: transparent;
 
             &:hover {
                 color: #909090;
             }
+
+            &.signIn { }
+            &.signUp { margin-left: 30px; }
+            &.reset { flex: 1; text-align: right; }
         }
 
-        *[data-show-page="signin"] { }
-        *[data-show-page="signup"] { margin-left: 30px; }
-        *[data-show-page="reset"] { flex: 1; text-align: right; }
+        .customText {
+            padding: 20px 0;
+            color: $navInactiveLink;
+            font-weight: bold;
+            font-size: 1.6rem;
+            text-align: right;
+            flex: 1;
+        }
+
     }
 
-    &[data-active="signin"] a[data-show-page="signin"] { color: #606060; }
-    &[data-active="signup"] a[data-show-page="signup"] { color: #606060; }
-    &[data-active="reset"] a[data-show-page="reset"] { color: #606060; }
+    &[data-active="signin"] a.signIn { color: #606060; }
+    &[data-active="signup"] a.signUp { color: #606060; }
+    &[data-active="reset"] a.reset { color: #606060; }
+    &[data-active="resetPassword"] a.resetPassword { color: #606060; }
 
     // PAGES
 
@@ -85,37 +104,43 @@
             .button-auth {
                 margin: 0;
                 padding: 20px;
-                background-color: #E592FF;
+                background-color: $buttonColor;
                 border: none;
-                border-bottom: 3px solid #bb77d0;
+                border-bottom: 3px solid darken($buttonColor, 10%);
                 border-radius: 5px;
                 color: white;
                 text-align: center;
                 font-weight: bold;
+                cursor: pointer;
 
                 &:hover {
-                    background: darken(#E592FF, 2)
+                    background: darken($buttonColor, 2)
                 }
             }
+
+            .authField {
+                position: relative;
+                margin-bottom: 5px;
+            }
+
+            *:nth-child(1) { z-index: 4 }
+            *:nth-child(2) { z-index: 3 }
+            *:nth-child(3) { z-index: 2 }
+            *:nth-child(4) { z-index: 1 }
+            *:nth-child(5) { z-index: 0 }
 
             input {
                 flex: 1;
                 width: 100%;
                 margin-top: 0px;
-                margin-bottom: 5px;
                 padding: 20px;
                 background-color: white;
                 border: 2px solid white;
                 border-radius: 5px;
                 font-weight: bold;
-                font-size: 1.6rem;
+                font-size: 1.4rem;
 
                 -webkit-appearance: none;
-
-                &:nth-of-type(1) { z-index: 3 }
-                &:nth-of-type(2) { z-index: 2 }
-                &:nth-of-type(3) { z-index: 1 }
-                &:nth-of-type(4) { z-index: 0 }
 
                 &::placeholder {
                     color: #E0E0E0;
@@ -132,53 +157,81 @@
                 }
             }
 
+            .auth-footer {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                position: relative;
+                top: -6px;
+                height: 60px;
+                color: $footerColor;
+            }
+
         }
 
         // Switch Animation
 
         .auth-enter {
+            .alert {
+                opacity: 1;
+                transition: all .2s;
+
+            }
             form {
-                input {
-                    transition: transform .5s .4s, opacity 1s;
+                > * {
+                    transition: transform .44s .35s;
                     transition-timing-function: cubic-bezier(0.57, 0.09, 0.12, 1.25);
                 }
-                input:nth-of-type(1) {opacity: 1 ; transform: translateY(0px); }
-                input:nth-of-type(2) { transform: translateY(-67px);  }
-                input:nth-of-type(3) { transform: translateY(-134px);  }
-                input:nth-of-type(4) { transform: translateY(-201px);  }
+                *:nth-child(1) { transform: translateY(0px); }
+                *:nth-child(2) { transform: translateY(-65px); }
+                *:nth-child(3) { transform: translateY(-130px); }
+                *:nth-child(4) { transform: translateY(-195px); }
+                *:nth-child(5) { transform: translateY(-260px); }
             }
 
         }
 
         .auth-enter.auth-enter-active {
+            .alert {
+                opacity: 0;
+            }
             form {
-                input:nth-of-type(1) {opacity: 1 ; transform: translateY(0px); }
-                input:nth-of-type(2) { transform: translateY(0px); }
-                input:nth-of-type(3) { transform: translateY(0px); }
-                input:nth-of-type(4) { transform: translateY(0px); }
+                *:nth-child(1) { transform: translateY(0px); }
+                *:nth-child(2) { transform: translateY(0px); }
+                *:nth-child(3) { transform: translateY(0px); }
+                *:nth-child(4) { transform: translateY(0px); }
+                *:nth-child(5) { transform: translateY(0px); }
             }
         }
 
         .auth-exit {
+            .alert {
+                opacity: 1;
+                transition: all .2s;
+            }
             form {
-                input {
-                    transition: all .3s .3s, opacity 1s;
+                > * {
+                    transition: all .2s .3s;
                     transition-timing-function: cubic-bezier(0.57, 0.09, 0.12, 1.28);
                 }
-                input:nth-of-type(1) {opacity: 1 ; transform: translateY(0px); }
-                input:nth-of-type(2) { transform: translateY(0px); }
-                input:nth-of-type(3) { transform: translateY(0px); }
-                input:nth-of-type(4) { transform: translateY(0px); }
+                *:nth-child(1) { transform: translateY(0px); }
+                *:nth-child(2) { transform: translateY(0px); }
+                *:nth-child(3) { transform: translateY(0px); }
+                *:nth-child(4) { transform: translateY(0px); }
+                *:nth-child(5) { transform: translateY(0px); }
             }
         }
 
         .auth-exit.auth-exit-active {
+            .alert {
+                opacity: 0
+            }
             form {
-
-                input:nth-of-type(1) {opacity: 1 ; transform: translateY(0px); }
-                input:nth-of-type(2) { transform: translateY(-67px);  }
-                input:nth-of-type(3) { transform: translateY(-134px);  }
-                input:nth-of-type(4) { transform: translateY(-201px);  }
+                *:nth-child(1) { transform: translateY(0px); }
+                *:nth-child(2) { transform: translateY(-65px); }
+                *:nth-child(3) { transform: translateY(-130px); }
+                *:nth-child(4) { transform: translateY(-195px); }
+                *:nth-child(5) { transform: translateY(-260px); }
             }
         }
 
@@ -190,6 +243,7 @@
     &[data-active="signin"] .page-signin { visibility: visible; }
     &[data-active="signup"] .page-signup { visibility: visible; }
     &[data-active="reset"]  .page-reset { visibility: visible; }
+    &[data-active="resetPassword"]  .page-resetPassword { visibility: visible; }
 
     // Move Nozzle
 
@@ -203,6 +257,54 @@
         &[data-active="reset"] .authPages:before { transform: translateX(340px)}
     }
 
+    .alert {
+        position: absolute;
+        top: -25px;
+        left: 175px;
+        width: 100px;
+        padding: 9px 4px;
+        background: #ff2d2d;
+        border-radius: 5px;
+        color: white;
+        text-align: center;
+        font-weight: 600;
+        font-size: 1.4rem;
+        line-height: 1.1;
+        transform: translateY(-100%);
 
+        @include MQ(S) {
+            width: 140px;
+            left: 185px;
+        }
+
+        &:after {
+            content: "";
+            width: 10px;
+            height: 10px;
+            position: absolute;
+            bottom: -5px;
+            transform: rotate(-45deg);
+            background: inherit;
+            left: 47%;
+        }
+    }
+
+    .error {
+        position: absolute;
+        right: 10px;
+        line-height: 1.2;
+        height: auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        background: #ff2d2d;
+        border-radius: 5px;
+        padding: 10px;
+        font-size: 1rem;
+        color: #ffffff;
+        border: 1px solid #ff2d2d;
+        top: 13px;
+    }
 
 }

@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { ResetForm } from '.'
 import * as actions from '../../actions'
 import { connect } from 'react-redux'
+import { apiRequestResetPassword } from '../../actions/index.js'
 
 class Reset extends Component {
 
@@ -12,7 +13,7 @@ class Reset extends Component {
     }
 
     handleSubmit({ email }) {
-
+        this.props.apiRequestResetPassword(email);
     }
 
     render() {
@@ -20,6 +21,7 @@ class Reset extends Component {
             <ResetForm
                 onSubmit={this.handleSubmit.bind(this)}
                 errorMessage={this.props.errorMessage}
+                location={this.props.location}
             />
         )
     }

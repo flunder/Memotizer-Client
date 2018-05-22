@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { reduxForm, Field } from 'redux-form'
 import { renderTextField } from './form_helpers'
+import { AuthFooter } from '.'
 
 class SignUpForm extends Component {
 
@@ -14,8 +15,12 @@ class SignUpForm extends Component {
         }
     }
 
-    render() {
-        const {handleSubmit} = this.props
+    shouldComponentUpdate(newProps) {
+        if (this.props.errorMessage !== newProps.errorMessage) return true;     // Allow Error Message Changes
+        return false;                                                           // Stop reender for each <Field />
+    }
+
+    render({ handleSubmit } = this.props) {
 
         return (
             <form onSubmit={handleSubmit} className="page page-signup">
@@ -23,24 +28,27 @@ class SignUpForm extends Component {
                 {this.renderAlert()}
 
                 <Field
-                    type="text"
-                    name="email"
+                    type="email"
+                    name="signupEmail"
                     placeholder="Email address"
                     component={renderTextField}
+                    autoComplete="off"
                 />
 
                 <Field
                     type="password"
-                    name="password"
+                    name="signupPassword"
                     placeholder="Password"
                     component={renderTextField}
+                    autoComplete="off"
                 />
 
                 <Field
                     type="password"
-                    name="passwordConfirmation"
+                    name="signupPasswordConfirmation"
                     placeholder="Password again"
                     component={renderTextField}
+                    autoComplete="off"
                 />
 
                 <input
@@ -48,6 +56,11 @@ class SignUpForm extends Component {
                     value="Sign Up"
                     className="button-auth"
                 />
+
+                <AuthFooter
+                    location={this.props.location}
+                />
+
             </form>
         )
     }
@@ -55,26 +68,16 @@ class SignUpForm extends Component {
 
 const validate = values => {
     const errors = {}
-
-    if (values.password !== values.passwordConfirmation) {
-        errors.password = 'Passwords must match'
-    }
-
-    if (!values.email) {
-        errors.email = 'Please enter an email'
-    }
-
-    if (!values.password) {
-        errors.password = 'Please enter a password'
-    }
-
-    if (!values.passwordConfirmation) {
-        errors.passwordConfirmation = 'Please confirm your password'
-    }
-
+    if (values.signupPassword !== values.signupPasswordConfirmation) { errors.signupPassword = 'Passwords must match' }
+    if (!values.signupEmail) { errors.signupEmail = 'Please enter an email' }
+    if (!values.signupPassword) { errors.signupPassword = 'Please enter a password' }
+    if (!values.signupPasswordConfirmation) { errors.signupPasswordConfirmation = 'Please confirm your password' }
     return errors
 }
 
-SignUpForm = reduxForm({ form: 'signup', validate })(SignUpForm)
+SignUpForm = reduxForm({
+    form: 'signup',
+    validate
+})(SignUpForm)
 
 export { SignUpForm }

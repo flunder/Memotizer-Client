@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { reduxForm, Field } from 'redux-form'
 import { renderTextField } from './form_helpers'
+import { AuthFooter } from '.'
 
 class ResetForm extends Component {
 
@@ -12,9 +13,12 @@ class ResetForm extends Component {
         }
     }
 
-    render() {
-        const { handleSubmit } = this.props
+    shouldComponentUpdate(newProps) {
+        if (this.props.errorMessage !== newProps.errorMessage) return true;     // Allow Error Message Changes
+        return false;                                                           // Stop reender for each <Field />
+    }
 
+    render({ handleSubmit } = this.props) {
         return (
 
             <form onSubmit={handleSubmit} className="page page-reset">
@@ -22,7 +26,7 @@ class ResetForm extends Component {
                 {this.renderAlert()}
 
                 <Field
-                    type="text"
+                    type="email"
                     name="email"
                     placeholder="Email address"
                     component={renderTextField}
@@ -32,6 +36,10 @@ class ResetForm extends Component {
                     className="button-auth"
                     type="submit"
                     value="Resend Email"
+                />
+
+                <AuthFooter
+                    location={this.props.location}
                 />
 
             </form>
